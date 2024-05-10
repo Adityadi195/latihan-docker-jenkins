@@ -1,10 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
-driver.implicitly_wait(5)
-driver.maximize_window()
+hub_url = "http://172.17.0.3:4444"
+
+capabilities = {
+    "browserName": "chrome"
+}
+
+driver = webdriver.Remote(
+    command_executor=hub_url,
+    options=webdriver.ChromeOptions(),
+)
+
+time.sleep(5)
+
 driver.get("https://www.saucedemo.com/")
 
 time.sleep(2)
